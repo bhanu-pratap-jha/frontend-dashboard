@@ -11,12 +11,13 @@ export default function Auth() {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [token, setToken] = useState(null);
-  const [isClient, setIsClient] = useState(false); //  Fix for Hydration Issue
+  const [loading, setLoading] = useState(false); // 🔹 Loading state
+  const [isClient, setIsClient] = useState(false); // Fix for Hydration Issue
   const router = useRouter();
 
-  //  Handle localStorage after component mounts (Fixes hydration issue)
+  // Handle localStorage after component mounts (Fixes hydration issue)
   useEffect(() => {
-    setIsClient(true); //  Ensures client-side execution
+    setIsClient(true);
     if (typeof window !== "undefined") {
       const storedToken = localStorage.getItem("token");
       setToken(storedToken);
@@ -24,12 +25,13 @@ export default function Auth() {
     }
   }, [router]);
 
-  if (!isClient) return null; //  Prevents hydration mismatch
+  if (!isClient) return null; // Prevents hydration mismatch
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     setMessage("");
+    setLoading(true); // 🔹 Start Loading
 
     try {
       if (isLogin) {
@@ -48,6 +50,8 @@ export default function Auth() {
       }
     } catch (error) {
       setError(error.response?.data?.message || "Something went wrong");
+    } finally {
+      setLoading(false); // 🔹 Stop Loading
     }
   };
 
@@ -76,12 +80,12 @@ export default function Auth() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <button type="submit" className={styles.button}>
-            {isLogin ? "Login" : "Signup"}
+          <button type="submit" className={styles.button} disabled={loading}>
+            {loading ? <span className={styles.loader}></span> : isLogin ? "Login" : "Signup"}
           </button>
         </form>
 
-        <button className={styles.toggle} onClick={() => setIsLogin(!isLogin)}>
+        <button className={styles.toggle} onClick={() => setIsLogin(!isLogin)} disabled={loading}>
           {isLogin ? "Don't have an account? Signup" : "Already have an account? Login"}
         </button>
       </div>
