@@ -40,6 +40,11 @@ export default function Dashboard() {
     //  Restore Dynamic Columns from Local Storage
     const savedDynamicColumns = JSON.parse(localStorage.getItem("dynamicColumns") || "[]");
     setDynamicColumns(savedDynamicColumns);
+
+    // 🔹 Initialize formData with empty values for dynamic columns
+    setFormData((prev) =>
+      savedDynamicColumns.reduce((acc, col) => ({ ...acc, [col.name]: "" }), prev)
+    );
   }, [router]);
 
   if (!isClient) return null; //  Prevents hydration mismatch
@@ -83,6 +88,9 @@ export default function Dashboard() {
     const updatedColumns = [...dynamicColumns, { name: newColumnName, type: newColumnType }];
     setDynamicColumns(updatedColumns);
     localStorage.setItem("dynamicColumns", JSON.stringify(updatedColumns));
+
+    // 🔹 Update formData to include new column
+    setFormData((prev) => ({ ...prev, [newColumnName]: "" }));
 
     setNewColumnName("");
     setNewColumnType("text");
@@ -148,12 +156,29 @@ export default function Dashboard() {
             value={formData.date || ""}
             onChange={(e) => setFormData({ ...formData, date: e.target.value })}
           />
+
+          {/* 🔹 Render Dynamic Column Inputs */}
+          {dynamicColumns.map((col, index) => (
+            <Input
+              key={index}
+              type={col.type}
+              placeholder={col.name}
+              value={formData[col.name] || ""}
+              onChange={(e) => setFormData({ ...formData, [col.name]: e.target.value })}
+            />
+          ))}
+
           <Button text="Add Data" type="submit" className={styles.submit} />
         </form>
 
         {/*  Add Dynamic Column Form */}
         <div className={styles.dynamicColumnForm}>
-          <input type="text" placeholder="Column Name" value={newColumnName} onChange={(e) => setNewColumnName(e.target.value)} />
+          <input
+            type="text"
+            placeholder="Column Name"
+            value={newColumnName}
+            onChange={(e) => setNewColumnName(e.target.value)}
+          />
           <select value={newColumnType} onChange={(e) => setNewColumnType(e.target.value)}>
             <option value="text">Text</option>
             <option value="date">Date</option>
