@@ -243,3 +243,82 @@
     font-size: 12px;
   }
 }
+
+/*  Dynamic Column Form (New Features) */
+.dynamicColumnForm {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 30px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 15px;
+  border-radius: 10px;
+  flex-wrap: wrap; /* Ensures items wrap in mobile */
+}
+
+/* 🏷️ New Column Input */
+.dynamicColumnForm input {
+  flex: 2;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+  color: #ffffff;
+  outline: none;
+  transition: border-color 0.3s ease-in-out, background 0.3s;
+}
+.dynamicColumnForm input::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/*  Data Type Dropdown */
+.dynamicColumnForm select {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+  color: #ffffff;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.3s ease-in-out, background 0.3s;
+}
+.dynamicColumnForm select:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/*  Add Column Button */
+.addColumn {
+  flex: 1;
+  background: linear-gradient(to right, #ff6a6a, #ff4b2b);
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-position 0.4s ease-in-out, transform 0.3s;
+}
+.addColumn:hover {
+  background: linear-gradient(to right, #ff4b2b, #ff6a6a);
+  transform: scale(1.05);
+}
+
+/* 📱 Responsive Design: Stack Add Column Below Input in Mobile View */
+@media (max-width: 768px) {
+  .dynamicColumnForm {
+    flex-direction: column; /* Stack elements in mobile */
+    gap: 15px;
+  }
+
+  .addColumn {
+    width: 100%; /* Full width button in mobile */
+  }
+}
+
