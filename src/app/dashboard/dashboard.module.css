@@ -1,4 +1,4 @@
-/*  General Container Styling */
+/* 🌟 General Container Styling */
 .container {
   display: flex;
   flex-direction: column;
@@ -6,44 +6,44 @@
   justify-content: center;
   min-height: 100vh;
   padding: 20px;
-  background: linear-gradient(to right, #1e3c72, #2a5298); /* Luxurious gradient */
+  background: linear-gradient(to right, #1e3c72, #2a5298);
 }
 
-/*  Dashboard Card */
+/* 📌 Dashboard Card */
 .card {
-  background: rgba(255, 255, 255, 0.2); /* Slightly transparent */
+  background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
   border-radius: 20px;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
   padding: 40px;
   width: 100%;
   max-width: 800px;
-  margin: 60px 0;
+  margin: 40px 0;
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-/*  Title */
+/* 🔹 Title */
 .title {
   font-size: 32px;
   font-weight: 700;
   color: #ffffff;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-/*  Error Message */
+/* ⚠️ Error Message */
 .errorMessage {
   color: #d9534f;
   background: rgba(217, 83, 78, 0.2);
-  padding: 15px;
+  padding: 12px;
   border: 1px solid #d9534f;
   border-radius: 8px;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   font-weight: 600;
 }
 
-/*  Logout Button */
+/* 🚀 Logout Button */
 .logoutContainer {
   display: flex;
   justify-content: flex-end;
@@ -64,7 +64,7 @@
   transform: scale(1.05);
 }
 
-/*  Table Styling */
+/* 🗂️ Table Styling */
 .tableContainer {
   width: 100%;
   overflow-x: auto;
@@ -79,7 +79,7 @@
 }
 .table th, .table td {
   border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 15px;
+  padding: 12px;
   text-align: center;
   font-size: 16px;
   color: #ffffff;
@@ -95,15 +95,15 @@
   background: rgba(255, 255, 255, 0.2);
 }
 
-/*  Add Data Form */
+/* ✅ Add Data Form */
 .form {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin-top: 25px;
+  margin-top: 20px;
 }
 .form input {
-  padding: 15px;
+  padding: 12px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 8px;
   font-size: 16px;
@@ -111,7 +111,7 @@
   backdrop-filter: blur(5px);
   color: #ffffff;
   outline: none;
-  transition: border-color 0.3s ease-in-out, background-position 0.3s;
+  transition: border-color 0.3s ease-in-out, background 0.3s;
 }
 .form input::placeholder {
   color: rgba(255, 255, 255, 0.8);
@@ -121,14 +121,14 @@
   background: rgba(255, 255, 255, 0.4);
 }
 
-/*  Submit Button */
+/* 🔵 Submit Button */
 .submit {
   background: linear-gradient(to right, #00c6ff, #0072ff);
   color: white;
   padding: 15px;
   border: none;
   border-radius: 8px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out, transform 0.3s;
@@ -138,19 +138,20 @@
   transform: scale(1.05);
 }
 
-/*  Dynamic Column Form (New Features) */
+/* 🔄 Dynamic Column Form */
 .dynamicColumnForm {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  margin-top: 30px;
+  margin-top: 20px;
   background: rgba(255, 255, 255, 0.2);
   padding: 15px;
   border-radius: 10px;
+  flex-wrap: wrap;
 }
 
-/* 🏷️ New Column Input */
+/* 🔹 Column Input */
 .dynamicColumnForm input {
   flex: 2;
   padding: 12px;
@@ -167,7 +168,7 @@
   color: rgba(255, 255, 255, 0.8);
 }
 
-/*  Data Type Dropdown */
+/* 🔽 Dropdown */
 .dynamicColumnForm select {
   flex: 1;
   padding: 12px;
@@ -185,7 +186,7 @@
   background: rgba(255, 255, 255, 0.4);
 }
 
-/*  Add Column Button */
+/* ➕ Add Column Button */
 .addColumn {
   flex: 1;
   background: linear-gradient(to right, #ff6a6a, #ff4b2b);
@@ -203,9 +204,9 @@
   transform: scale(1.05);
 }
 
-/* ✅ Google Sheet Button */
+/* 📊 Google Sheet Button */
 .googleSheetButton {
-  background: rgba(255, 255, 255, 0.2); /* Glassmorphic background */
+  background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: white;
@@ -217,108 +218,19 @@
   transition: background-position 0.3s ease-in-out, transform 0.3s, box-shadow 0.3s;
   margin-top: 20px;
 }
-
 .googleSheetButton:hover {
   background: rgba(255, 255, 255, 0.3);
   box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.4);
   transform: scale(1.05);
 }
 
-/* 📱 Responsive Design */
-@media (max-width: 768px) {
-  .card {
-    padding: 20px;
-  }
-  .title {
-    font-size: 24px;
-  }
-  .form input, .dynamicColumnForm input, .dynamicColumnForm select {
-    font-size: 14px;
-  }
-  .submit, .addColumn {
-    font-size: 16px;
-    padding: 12px;
-  }
-  .table th, .table td {
-    font-size: 12px;
-  }
-}
-
-/*  Dynamic Column Form (New Features) */
-.dynamicColumnForm {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin-top: 30px;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 15px;
-  border-radius: 10px;
-  flex-wrap: wrap; /* Ensures items wrap in mobile */
-}
-
-/* 🏷️ New Column Input */
-.dynamicColumnForm input {
-  flex: 2;
-  padding: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 8px;
-  font-size: 16px;
-  background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(5px);
-  color: #ffffff;
-  outline: none;
-  transition: border-color 0.3s ease-in-out, background 0.3s;
-}
-.dynamicColumnForm input::placeholder {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-/*  Data Type Dropdown */
-.dynamicColumnForm select {
-  flex: 1;
-  padding: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 8px;
-  font-size: 16px;
-  background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(5px);
-  color: #ffffff;
-  outline: none;
-  cursor: pointer;
-  transition: border-color 0.3s ease-in-out, background 0.3s;
-}
-.dynamicColumnForm select:hover {
-  background: rgba(255, 255, 255, 0.4);
-}
-
-/*  Add Column Button */
-.addColumn {
-  flex: 1;
-  background: linear-gradient(to right, #ff6a6a, #ff4b2b);
-  color: white;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-position 0.4s ease-in-out, transform 0.3s;
-}
-.addColumn:hover {
-  background: linear-gradient(to right, #ff4b2b, #ff6a6a);
-  transform: scale(1.05);
-}
-
-/* 📱 Responsive Design: Stack Add Column Below Input in Mobile View */
+/* 📱 Mobile Optimization */
 @media (max-width: 768px) {
   .dynamicColumnForm {
-    flex-direction: column; /* Stack elements in mobile */
+    flex-direction: column;
     gap: 15px;
   }
-
   .addColumn {
-    width: 100%; /* Full width button in mobile */
+    width: 100%;
   }
 }
-
