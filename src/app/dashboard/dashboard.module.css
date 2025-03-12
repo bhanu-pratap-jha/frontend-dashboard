@@ -222,3 +222,22 @@
       font-size: 14px;
   }
 }
+.googleSheetButton {
+  background: rgba(255, 255, 255, 0.2); /* Glassmorphic background */
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-position 0.3s ease-in-out, transform 0.3s, box-shadow 0.3s;
+}
+
+.googleSheetButton:hover {
+  background: rgba(255, 255, 255, 0.3); /* Slightly more visible on hover */
+  box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.4); /* Soft glowing effect */
+  transform: scale(1.05);
+}
+
