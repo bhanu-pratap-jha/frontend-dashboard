@@ -13,10 +13,10 @@ export default function Dashboard() {
   const [dynamicColumns, setDynamicColumns] = useState([]); // User-added columns
   const [formData, setFormData] = useState({});
   const [newColumnName, setNewColumnName] = useState("");
-  const [newColumnType, setNewColumnType] = useState("text"); // Default: Text input
+  const [newColumnType, setNewColumnType] = useState("text");
   const [error, setError] = useState("");
   const [token, setToken] = useState(null);
-  const [isClient, setIsClient] = useState(false); // Fix for Hydration Issue
+  const [isClient, setIsClient] = useState(false);
   const router = useRouter();
 
   // Fetch Data & Handle Authentication Only on Client
@@ -28,26 +28,38 @@ export default function Dashboard() {
       if (!storedToken) router.push("/auth");
     }
 
-    fetchSheetData()
-      .then((sheetData) => {
+    const loadData = async () => {
+      try {
+        const sheetData = await fetchSheetData();
         if (sheetData.length > 0) {
-          setColumns(sheetData[0]); // First row is headers
-          setData(sheetData.slice(1)); // Remaining rows are actual data
+          setColumns(sheetData[0]); // First row as headers
+          setData(sheetData.slice(1)); // Remaining rows as data
         }
-      })
-      .catch(() => setError("Failed to load data. Try again later."));
+      } catch (err) {
+        setError("Failed to load data. Try again later.");
+      }
+    };
 
-    // Restore Dynamic Columns from Local Storage
+    loadData();
+
+    // Fetch updates every 10 seconds for real-time updates
+    const interval = setInterval(loadData, 10000);
+    return () => clearInterval(interval);
+  }, [router]);
+
+  // Restore Dynamic Columns & Ensure formData includes all fields
+  useEffect(() => {
     const savedDynamicColumns = JSON.parse(localStorage.getItem("dynamicColumns") || "[]");
     setDynamicColumns(savedDynamicColumns);
 
-    // Ensure formData includes all existing and dynamic columns
+    // Initialize formData to include all columns (existing + dynamic)
     setFormData((prev) =>
-      [...columns.slice(3), ...savedDynamicColumns].reduce((acc, col) => ({ 
-        ...acc, [col.name || col]: prev[col.name || col] || "" 
-      }), prev)
+      [...columns.slice(3), ...savedDynamicColumns].reduce(
+        (acc, col) => ({ ...acc, [col.name || col]: prev[col.name || col] || "" }),
+        prev
+      )
     );
-  }, [router]);
+  }, [columns]);
 
   if (!isClient) return null; // Prevents hydration mismatch
 
