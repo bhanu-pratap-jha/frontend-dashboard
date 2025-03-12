@@ -203,25 +203,7 @@
   transform: scale(1.05);
 }
 
-/*  Responsive Design */
-@media (max-width: 768px) {
-  .card {
-      padding: 25px;
-  }
-  .title {
-      font-size: 26px;
-  }
-  .form input, .dynamicColumnForm input, .dynamicColumnForm select {
-      font-size: 14px;
-  }
-  .submit, .addColumn {
-      font-size: 16px;
-      padding: 12px;
-  }
-  .table th, .table td {
-      font-size: 14px;
-  }
-}
+/* ✅ Google Sheet Button */
 .googleSheetButton {
   background: rgba(255, 255, 255, 0.2); /* Glassmorphic background */
   backdrop-filter: blur(10px);
@@ -233,11 +215,31 @@
   font-weight: 600;
   cursor: pointer;
   transition: background-position 0.3s ease-in-out, transform 0.3s, box-shadow 0.3s;
+  margin-top: 20px;
 }
 
 .googleSheetButton:hover {
-  background: rgba(255, 255, 255, 0.3); /* Slightly more visible on hover */
-  box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.4); /* Soft glowing effect */
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.4);
   transform: scale(1.05);
 }
 
+/* 📱 Responsive Design */
+@media (max-width: 768px) {
+  .card {
+    padding: 20px;
+  }
+  .title {
+    font-size: 24px;
+  }
+  .form input, .dynamicColumnForm input, .dynamicColumnForm select {
+    font-size: 14px;
+  }
+  .submit, .addColumn {
+    font-size: 16px;
+    padding: 12px;
+  }
+  .table th, .table td {
+    font-size: 12px;
+  }
+}
