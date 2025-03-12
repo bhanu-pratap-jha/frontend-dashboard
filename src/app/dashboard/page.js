@@ -16,12 +16,12 @@ export default function Dashboard() {
   const [newColumnType, setNewColumnType] = useState("text"); // Default: Text input
   const [error, setError] = useState("");
   const [token, setToken] = useState(null);
-  const [isClient, setIsClient] = useState(false); // Fix for Hydration Issue
+  const [isClient, setIsClient] = useState(false); //  Fix for Hydration Issue
   const router = useRouter();
 
-  // Fetch Data & Handle Authentication Only on Client
+  //  Fetch Data & Handle Authentication Only on Client
   useEffect(() => {
-    setIsClient(true); // Ensures client-side execution
+    setIsClient(true); //  Ensures client-side execution
     if (typeof window !== "undefined") {
       const storedToken = localStorage.getItem("token");
       setToken(storedToken);
@@ -31,30 +31,25 @@ export default function Dashboard() {
     fetchSheetData()
       .then((sheetData) => {
         if (sheetData.length > 0) {
-          setColumns(sheetData[0]); // First row is headers
-          setData(sheetData.slice(1)); // Remaining rows are actual data
+          setColumns(sheetData[0]); //  First row is headers
+          setData(sheetData.slice(1)); //  Remaining rows are actual data
         }
       })
-      .catch(() => setError("Failed to load data. Try again later."));
+      .catch(() => setError(" Failed to load data. Try again later."));
 
-    // Restore Dynamic Columns from Local Storage
+    //  Restore Dynamic Columns from Local Storage
     const savedDynamicColumns = JSON.parse(localStorage.getItem("dynamicColumns") || "[]");
     setDynamicColumns(savedDynamicColumns);
-
-    // 🔹 Ensure formData contains all dynamic columns (fix missing input fields)
-    setFormData((prev) =>
-      savedDynamicColumns.reduce((acc, col) => ({ ...acc, [col.name]: prev[col.name] || "" }), prev)
-    );
   }, [router]);
 
-  if (!isClient) return null; // Prevents hydration mismatch
+  if (!isClient) return null; //  Prevents hydration mismatch
 
-  // Handle Adding Data to Google Sheets
+  //  Handle Adding Data to Google Sheets
   const handleAddData = async (e) => {
     e.preventDefault();
 
     if (!formData.name || !formData.email || !formData.date) {
-      setError("All fields are required!");
+      setError(" All fields are required!");
       return;
     }
 
@@ -65,7 +60,7 @@ export default function Dashboard() {
       ...dynamicColumns.map((col) => formData[col.name] || ""),
     ];
 
-    console.log("New Row Data Before Sending:", newRow);
+    console.log(" New Row Data Before Sending:", newRow);
 
     try {
       await addSheetData(newRow);
@@ -73,12 +68,12 @@ export default function Dashboard() {
       setFormData({});
       setError("");
     } catch (error) {
-      setError("Failed to add data.");
-      console.error("Full Error Object:", error);
+      setError(" Failed to add data.");
+      console.error(" Full Error Object:", error);
     }
   };
 
-  // Handle Adding Dynamic Columns (Only in UI)
+  //  Handle Adding Dynamic Columns (Only in UI)
   const handleAddColumn = () => {
     if (!newColumnName.trim()) {
       alert("Column name cannot be empty!");
@@ -88,9 +83,6 @@ export default function Dashboard() {
     const updatedColumns = [...dynamicColumns, { name: newColumnName, type: newColumnType }];
     setDynamicColumns(updatedColumns);
     localStorage.setItem("dynamicColumns", JSON.stringify(updatedColumns));
-
-    // 🔹 Update formData to include new column
-    setFormData((prev) => ({ ...prev, [newColumnName]: "" }));
 
     setNewColumnName("");
     setNewColumnType("text");
@@ -107,7 +99,7 @@ export default function Dashboard() {
           <Button text="Logout" onClick={logout} className={styles.logout} />
         </div>
 
-        {/* Table Rendering */}
+        {/*  Table Rendering */}
         <div className={styles.tableContainer}>
           <table className={styles.table}>
             <thead>
@@ -136,8 +128,15 @@ export default function Dashboard() {
             </tbody>
           </table>
         </div>
+        {/* Google Sheet Button */}
+        <Button
+          text="Open Google Sheet"
+          onClick={() => window.open("https://docs.google.com/spreadsheets/d/1MYUHr_0TRJSor9sMZyFcck0PP7wCi6ayLORCMKzvdlk/edit?gid=0#gid=0", "_blank")}
+          className={styles.googleSheetButton}
+        />
 
-        {/* Add Data Form */}
+
+        {/*  Add Data Form */}
         <form className={styles.form} onSubmit={handleAddData}>
           <Input
             type="text"
@@ -156,29 +155,12 @@ export default function Dashboard() {
             value={formData.date || ""}
             onChange={(e) => setFormData({ ...formData, date: e.target.value })}
           />
-
-          {/* 🔹 Render Dynamic Column Inputs */}
-          {dynamicColumns.map((col, index) => (
-            <Input
-              key={index}
-              type={col.type}
-              placeholder={col.name}
-              value={formData[col.name] || ""}
-              onChange={(e) => setFormData({ ...formData, [col.name]: e.target.value })}
-            />
-          ))}
-
           <Button text="Add Data" type="submit" className={styles.submit} />
         </form>
 
-        {/* Add Dynamic Column Form */}
+        {/*  Add Dynamic Column Form */}
         <div className={styles.dynamicColumnForm}>
-          <input
-            type="text"
-            placeholder="Column Name"
-            value={newColumnName}
-            onChange={(e) => setNewColumnName(e.target.value)}
-          />
+          <input type="text" placeholder="Column Name" value={newColumnName} onChange={(e) => setNewColumnName(e.target.value)} />
           <select value={newColumnType} onChange={(e) => setNewColumnType(e.target.value)}>
             <option value="text">Text</option>
             <option value="date">Date</option>
