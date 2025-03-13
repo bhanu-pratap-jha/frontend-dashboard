@@ -1,6 +1,6 @@
 # **Frontend - README**  
 
-This repository contains the **frontend** implementation for a full-stack project that integrates **Google Sheets as a database** using **Next.js and Tailwind CSS**. It allows users to **authenticate, fetch data from Google Sheets, add dynamic columns, and manage records**.  
+This repository contains the **frontend** implementation for a full-stack project that integrates **Google Sheets as a database** using **Next.js**. It allows users to **authenticate, fetch data from Google Sheets, add dynamic columns, and manage records**.  
 
 ---
 
