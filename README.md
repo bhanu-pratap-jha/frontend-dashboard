@@ -41,26 +41,6 @@ The application will run on **`http://localhost:3000`** by default.
 
 ---
 
-## **Project Structure**  
-
-```
-frontend/
-│── src/
-│   ├── app/
-│   │   ├── page.js        # Landing Page
-│   │   ├── auth/page.js   # Login & Signup Page
-│   │   ├── dashboard/page.js  # Dashboard with Google Sheets Integration
-│   ├── components/        # Reusable UI components (Button, Input, Navbar)
-│   ├── utils/api.js       # API calls to backend
-│── public/                # Static assets
-│── styles/                # CSS & Tailwind styles
-│── .env.local             # Environment Variables
-│── package.json           # Project Dependencies
-│── README.md              # Documentation
-```
-
----
-
 ## **Tech Stack**
 - **Frontend:** Next.js, React  
 - **Styling:** Tailwind CSS, CSS Modules  
